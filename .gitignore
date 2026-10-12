@@ -1,0 +1,14 @@
+﻿# Environment variables (NEVER commit this)
+.env
+
+# Data
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Python cache and environments
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
