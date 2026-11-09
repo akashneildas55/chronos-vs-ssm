@@ -189,41 +189,31 @@ Paired block bootstrap on daily profit, Diebold–Mariano tests, and the multiva
 - Pinned seeds, a lockfile, pinned model revisions, and one config per experiment.
 
 ---
-
 ## 9. Repository structure
+
+**Current:**
 
 ```
 chronos-vs-ssm/
-├── .env.example             # API key template (never commit .env)
 ├── README.md
 ├── MODEL_CARD.md
-├── RESULTS.md               # running results and decisions log
-├── pyproject.toml
-├── configs/
-│   ├── dk1.yaml             # one config per zone
-│   ├── dk2.yaml
-│   ├── de_lu.yaml
-│   └── battery.yaml         # shared battery specification
-├── data/
-│   ├── raw/{zone}/          # untracked
-│   └── processed/{zone}/
-├── forecasts/{zone}/{model}/  # cached forecast samples
-├── results/{zone}/
+├── configs/                 # zone and battery configs (planned)
+├── data/{raw,processed}/    # untracked data
 ├── notebooks/
 ├── tests/
-│   ├── test_leakage.py
-│   └── test_battery.py
+│   └── test_leakage.py
 └── src/radar/
-    ├── data/                # ENTSO-E client, validation, splitter
-    ├── features/            # calendar, residual load, covariates
-    ├── models/              # baselines, Chronos-2, Pyro SSM
-    ├── scenarios/           # copula / Schaake shuffle
-    ├── battery/             # LP, stochastic and CVaR dispatch, simulator
-    ├── backtest/            # rolling-origin runner
-    └── eval/                # CRPS, scores, profit, significance tests
+    ├── data/                # synthetic generator
+    ├── features/
+    ├── models/              # ssm.py (in progress)
+    ├── battery/
+    └── eval/
 ```
 
-Forecasting and trading are decoupled: models write forecasts to disk, and the simulator reads only those files.
+**Planned:** `pyproject.toml`, `.env.example`, `RESULTS.md`, LICENSE, per-zone configs
+(`dk1.yaml`, `dk2.yaml`, `de_lu.yaml`, `battery.yaml`), `src/radar/data/splits.py`,
+ENTSO-E client, battery LP and simulator, `tests/test_battery.py`,
+`src/radar/scenarios/`, `src/radar/backtest/`, and the `forecasts/` and `results/` output folders.
 
 ---
 
